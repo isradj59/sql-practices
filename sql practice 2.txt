@@ -1,0 +1,22 @@
+First we create a new table with the structure that was shown in the guide.
+We learn how to import data from a .csv document.
+First we needed to make the documents root accesible, so we procede to copy the file in /tmp/
+Then we only have to paste this comand:
+COPY us_counties_pop_est_2019
+FROM 'C:\YourDirectory\us_counties_pop_est_2019.csv'
+WITH (FORMAT CSV, HEADER);
+The .csv imports around 3 thousand lines of data.
+Also we learn how to limit the number of lines of data you want to be shown.
+
+We create another table named supervisor_salaries and we repeat the procces of importing .csv data with other file.
+We also learned how to make temp tables with data of other table so we can modify data and reinsert de data into the original table.
+Another thing we learned is how to export data to a .txt file.
+We can export the table with all columns or we can select what columns we want to export.
+Also we can export queries.
+COPY (
+    SELECT county_name, state_name
+    FROM us_counties_pop_est_2019
+    WHERE county_name ILIKE '%mill%'
+     )
+TO '/tmp/us_counties_mill_export.csv'
+WITH (FORMAT CSV, HEADER);
