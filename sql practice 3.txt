@@ -1,0 +1,8 @@
+Chapter_06
+We can make operations using queries.
+We learned how to show tables with other name.
+When we rename columns we can use queries as normaly.
+We can make queries that have columns with operations using other columns.
+We practice percentiles and quartiles on queries.
+
+

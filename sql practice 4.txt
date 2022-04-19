@@ -1,0 +1,32 @@
+Chapter_07
+We learn how to join different tables.
+SELECT *
+FROM employees JOIN departments
+ON employees.dept_id = departments.dept_id
+ORDER BY employees.dept_id;
+We practice different ways to join tables.
+Make queries with 3 tables.
+SELECT d20.id,
+       d20.school_2020,
+       en.enrollment,
+       gr.grades
+FROM district_2020 AS d20 JOIN district_2020_enrollment AS en
+    ON d20.id = en.id
+JOIN district_2020_grades AS gr
+    ON d20.id = gr.id
+ORDER BY d20.id;
+Using Union it would not repeat data, using Union ALL it would show all results.
+We also made more cmplex queries likes this.
+SELECT c2019.county_name,
+       c2019.state_name,
+       c2019.pop_est_2019 AS pop_2019,
+       c2010.estimates_base_2010 AS pop_2010,
+       c2019.pop_est_2019 - c2010.estimates_base_2010 AS raw_change,
+       round( (c2019.pop_est_2019::numeric - c2010.estimates_base_2010)
+           / c2010.estimates_base_2010 * 100, 1 ) AS pct_change
+FROM us_counties_pop_est_2019 AS c2019
+    JOIN us_counties_pop_est_2010 AS c2010
+ON c2019.state_fips = c2010.state_fips
+    AND c2019.county_fips = c2010.county_fips
+ORDER BY pct_change DESC;
+That query is for joinning 2 different tables with 2 parameters and creating a column with math.
